@@ -1,0 +1,70 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+<title>hexadecimal</title>
+<script type="text/javascript">
+	
+    
+    function cierra(){
+		if (confirm("¿Quieres cerrar la ventana?")){
+			window.close();
+
+		}
+	}
+    
+    function limpiar(){
+    lista=document.querySelectorAll('p');
+    if(lista.length!=0){
+        i=lista.length-1;  // posiciona en el último párrafo creado
+        while(i>-1)
+             lista[i].parentNode.removeChild(lista[i--]);
+    }
+    else alert("No hay párrafos a eliminar");
+  }    
+   
+    function hexa(numero){   
+        var aux2;
+        var modulo2;
+        var hex="";
+        aux2=numero;      
+    while(numero > 0){ 
+        modulo2=numero % 16;
+        if(modulo2 > 9){
+            switch(modulo2){
+                case 10: hex="A"+hex;break;
+                case 11: hex="B"+hex;break;
+                case 12: hex="C"+hex;break;
+                case 13: hex="D"+hex;break;
+                case 14: hex="E"+hex;break;
+                case 15: hex="F"+hex;break;
+            }
+            numero=Math.floor(numero/16);
+        }
+        else{
+            
+        hex=modulo2+hex;
+        numero=Math.floor(numero/16);
+        
+        }
+    }
+        
+       parrafo = document.createElement("p");
+       contenido = document.createTextNode("El número " + aux2 + " en hexadecimal es: " + hex);  
+       parrafo.appendChild(contenido);
+       document.body.appendChild(parrafo);
+    }
+    
+</script>
+</head>
+<body>
+<h1>DECIMAL A HEXADECIMAL</h1>
+	<form>
+        <label>Introduce numero</label>
+        <input type="text" id="num" name="numero" value="">
+        <button type="button" onclick="hexa(numero.value)">Convertir</button>
+        <button type="button" onclick="limpiar()">LIMPIAR TODO</button>
+		<input type="button" onClick="cierra();" value="Cerrar"/>
+	</form>
+</body>
+</html>
